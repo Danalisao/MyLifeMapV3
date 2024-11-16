@@ -5,4 +5,4 @@ export interface DailyNote {
   userId: string;
   createdAt: string;
   updatedAt: string;
-}</content>
+}
