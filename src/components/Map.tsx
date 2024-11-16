@@ -9,6 +9,7 @@ import { db } from '../lib/firebase';
 import { useAuth } from '../contexts/AuthContext';
 import MemoryMarker from './memories/MemoryMarker';
 import type { Memory } from '../types/memory';
+import { useNavigate } from 'react-router-dom';
 
 export function Map() {
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -17,6 +18,7 @@ export function Map() {
   const [showAddMemory, setShowAddMemory] = useState(false);
   const [memories, setMemories] = useState<Memory[]>([]);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   // Amélioration de la gestion des marqueurs
   const updateMarker = useCallback((memory: Memory) => {
@@ -151,17 +153,12 @@ export function Map() {
       
       <div className="absolute bottom-20 right-4 z-10">
         <Button
-          onClick={() => setShowAddMemory(true)}
+          onClick={() => navigate('/memories/new')}
           className="rounded-full w-14 h-14 shadow-lg"
         >
           <Plus className="h-6 w-6" />
         </Button>
       </div>
-
-      <AddMemoryDialog
-        isOpen={showAddMemory}
-        onClose={() => setShowAddMemory(false)}
-      />
     </>
   );
 }

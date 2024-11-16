@@ -262,6 +262,7 @@ export default function AddMemoryDialog({ isOpen, onClose, memory }: AddMemoryDi
         media: memory ? [...(memory.media || []), ...newMedia] : newMedia,
         userId: user.uid,
         updatedAt: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
       };
 
       if (memory?.id) {
